@@ -1,0 +1,55 @@
+1-in-memory DataBase(apache derby) + JPA 
+
+Request URL 
+=============
+
+Create Ticket
+---------------
+POST-http://localhost:8081/ticketBookingApp/ticket
+
+{
+"passengerName":"black",
+"sourceStation":"pune",
+"destStation":"mp",
+"email":"th@gmail1.com"
+}
+
+
+
+Get All Ticket
+---------------
+GET-http://localhost:8081/ticketBookingApp/ticket
+
+
+
+Get Ticket BY ID
+-----------------
+GET-http://localhost:8081/ticketBookingApp/ticket/5
+
+
+
+Update Ticket
+---------------
+PUT-http://localhost:8081/ticketBookingApp/ticket
+
+{
+   "ticketId": 1,
+   "passengerName": "black1",
+   "bookingDate": 1529672698686,
+   "sourceStation": "pune99",
+   "destStation": "mp1",
+   "email": "th@gmail1.com"
+ }
+
+
+
+Delete Ticket BY ID
+--------------------
+DELETE-http://localhost:8081/ticketBookingApp/ticket/1
+
+
+
+
+
+
+
