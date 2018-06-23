@@ -28,7 +28,7 @@ public class TicketBookingController {
 
 	@PostMapping(value = "/ticket")
 	public ResponseEntity<Response> createTicket(@RequestBody Ticket ticket ) {
-		Ticket creatTicketRes = ticketBookingService.createTicket(ticket);
+		Ticket creatTicketRes = ticketBookingService.createTicket(ticket);            
 		Response response = new Response(HttpStatus.OK.value(),"Success",creatTicketRes);
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 	}
