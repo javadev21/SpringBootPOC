@@ -1,13 +1,13 @@
 package com.ticket.booking.app.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="ticket")
@@ -19,18 +19,24 @@ public class Ticket {
 	private int ticketId;
 	
 	@Column(name="passengerName")
+	@NotEmpty
 	private String passengerName;
 	
 	@Column(name="bookingDate")
 	private long bookingDate;
 	
 	@Column(name="sourceStation")
+	@NotEmpty
 	private String sourceStation;
 	
 	@Column(name="destStation")
+	@NotEmpty
+
 	private String destStation;
 	
 	@Column(name="email")
+	@NotEmpty
+	@Email
 	private String email;
 
 	public int getTicketId() {

@@ -1,9 +1,14 @@
 package com.ticket.booking.app.controller;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,11 +30,16 @@ public class TicketBookingController {
 
 	@Autowired
 	private TicketBookingService ticketBookingService;
+	
+	@Autowired
+	MessageSource messageSource;
 
 	@PostMapping(value = "/ticket")
-	public ResponseEntity<Response> createTicket(@RequestBody Ticket ticket ) {
+	public ResponseEntity<Response> createTicket(@Valid @RequestBody Ticket ticket ) {
 		Ticket creatTicketRes = ticketBookingService.createTicket(ticket);            
 		Response response = new Response(HttpStatus.OK.value(),"Success",creatTicketRes);
+		System.out.println(messageSource.getMessage("NotEmpty.ticket.passengerName", null, new Locale("EN")));
+		
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 	}
 
@@ -83,7 +93,7 @@ public class TicketBookingController {
 	}
 	
 	@PutMapping(value="/ticket")
-	private ResponseEntity<Response> updateTicket(@RequestBody Ticket ticket){
+	private ResponseEntity<Response> updateTicket(@Valid @RequestBody Ticket ticket){
 		
 		Response response ;
 		ResponseEntity<Response> responseEntity;
