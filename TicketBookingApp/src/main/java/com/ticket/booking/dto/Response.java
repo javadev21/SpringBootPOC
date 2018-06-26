@@ -4,42 +4,35 @@ public class Response {
 
 	
 	private int statusCode;
-	private String msg;
+	private String message;
 	private Object data;
-
 	public int getStatusCode() {
 		return statusCode;
 	}
-
 	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
 	}
-
-	public String getStatusMsg() {
-		return msg;
+	public String getMessage() {
+		return message;
 	}
-
-	public void setStatusMsg(String statusMsg) {
-		this.msg = statusMsg;
+	public void setMessage(String message) {
+		this.message = message;
 	}
-
 	public Object getData() {
 		return data;
 	}
-
 	public void setData(Object data) {
 		this.data = data;
 	}
-
-	public Response(int statusCode, String statusMsg, Object data) {
+	public Response(int statusCode, String message, Object data) {
 		super();
 		this.statusCode = statusCode;
-		this.msg = statusMsg;
+		this.message = message;
 		this.data = data;
 	}
-
 	public Response() {
 		super();
 	}
 
+	
 }
