@@ -29,17 +29,17 @@ import com.ticket.booking.dto.Response;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 @ControllerAdvice
 @RestController
-public class CustomExceptionHandler extends ResponseEntityExceptionHandler implements ErrorController {
+public class CustomExceptionHandlingController extends ResponseEntityExceptionHandler implements ErrorController {
 	@Autowired
 	private MessageSource messageSource;
-	
+
 	@Autowired
 	private ErrorAttributes errorAttributes;
 
 	public static final String ERROR_PATH = "/error";
-	private boolean debug =true;
-	
-	//global exception handler 
+	private boolean debug = true;
+
+	// global exception handler
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<Response> handleAllExceptions(Exception ex, WebRequest request) {
 		List<String> details = new ArrayList<>();
@@ -48,7 +48,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler imple
 		return new ResponseEntity(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	//request validation error handler 
+	// request validation error handler
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -61,25 +61,21 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler imple
 		Response errorResponse = new Response(HttpStatus.BAD_REQUEST.value(), "Validation Failed", errorMessages);
 		return new ResponseEntity(errorResponse, HttpStatus.BAD_REQUEST);
 	}
-	
-	
- //White label error page handler
+
+	// White label error page handler
 	@RequestMapping(value = ERROR_PATH)
-	ResponseEntity<Response> error(WebRequest request, HttpServletResponse response){
-	     return ResponseEntity.status(response.getStatus())
-	         .body(
-	             new Response(response.getStatus(),"Requested URL not found", getErrorAttributes(request,debug)
-	         )
-	     );
+	ResponseEntity<Response> error(WebRequest request, HttpServletResponse response) {
+		return ResponseEntity.status(response.getStatus()).body(
+				new Response(response.getStatus(), "Requested URL not found", getErrorAttributes(request, debug)));
 	}
 
 	@Override
-	public String getErrorPath(){
-	    return ERROR_PATH;
+	public String getErrorPath() {
+		return ERROR_PATH;
 	}
 
 	private Map<String, Object> getErrorAttributes(WebRequest request, boolean includeStackTrace) {
-	    return errorAttributes.getErrorAttributes( request ,includeStackTrace);
+		return errorAttributes.getErrorAttributes(request, includeStackTrace);
 	}
 
 }
