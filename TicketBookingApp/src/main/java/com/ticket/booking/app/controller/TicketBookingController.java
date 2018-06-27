@@ -38,8 +38,6 @@ public class TicketBookingController {
 	public ResponseEntity<Response> createTicket(@Valid @RequestBody Ticket ticket ) {
 		Ticket creatTicketRes = ticketBookingService.createTicket(ticket);            
 		Response response = new Response(HttpStatus.OK.value(),"Success",creatTicketRes);
-		System.out.println(messageSource.getMessage("NotEmpty.ticket.passengerName", null, new Locale("EN")));
-		
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 	}
 
