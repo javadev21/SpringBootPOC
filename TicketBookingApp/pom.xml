@@ -6,7 +6,7 @@
 	<groupId>com.ticket.booking.app</groupId>
 	<artifactId>TicketBookingApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>TicketBookingApp</name>
 	<description>Ticket booking management app POC (Curd Operation)</description>
